@@ -1,6 +1,6 @@
 from sqlalchemy.exc import SQLAlchemyError
-from db_schemas import User
-from utils import hash_password
+from app.db_schemas import User
+from app.utils import hash_password
 from fastapi import HTTPException, status
 
 class BlogManagement:

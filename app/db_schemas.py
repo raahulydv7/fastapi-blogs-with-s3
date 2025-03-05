@@ -12,8 +12,12 @@ class User(Base):
     username = Column(String(150), unique=True, nullable=False, index=True)
     email = Column(String(255), unique=True, nullable=False)
     password = Column(String(255), nullable=False)
-    created_at = Column(DateTime, default=func.utcnow)
-    modified_at = Column(DateTime, default=func.utcnow, onupdate=func.utcnow)
+    created_at = Column(
+        DateTime, server_default=func.now()
+    )  # Fixed `func.utcnow` -> `func.now()`
+    modified_at = Column(
+        DateTime, server_default=func.now(), onupdate=func.now()
+    )  # Fixed `func.utcnow`
 
     blogs = relationship("Blog", back_populates="author", cascade="all, delete")
 
@@ -25,8 +29,10 @@ class Blog(Base):
     title = Column(String(255), nullable=False)
     content = Column(String, nullable=False)
     image_url = Column(String(500), nullable=True)  # Increased length for URLs
-    created_at = Column(DateTime, default=func.utcnow)
-    modified_at = Column(DateTime, default=func.utcnow, onupdate=func.utcnow)
+    created_at = Column(DateTime, server_default=func.now())  # Fixed `func.utcnow`
+    modified_at = Column(
+        DateTime, server_default=func.now(), onupdate=func.now()
+    )  # Fixed `func.utcnow`
 
     author_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
     author = relationship("User", back_populates="blogs")

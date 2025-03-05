@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import uvicorn
 
 try:
-    from app.router import router as routes
+    from app.router import routes
 except Exception as e:
     print(f"Error importing routes: {e}")
 
@@ -14,7 +14,7 @@ def root():
     return {"msg": "Welcome to Root"}
 
 
-app.include_router(routes)
+app.include_router(routes, prefix="/blog", tags=["Blogs"])
 
 
 if __name__ == "__main__":
