@@ -8,13 +8,9 @@ class UserCreate(BaseModel):
     password: str
 
 
-class UserResponse(BaseModel):
-    id: int
+class UserLogin(BaseModel):
     username: str
-    email: str
-
-    class Config:
-        from_attributes = True
+    password: str
 
 
 class BlogCreate(BaseModel):
