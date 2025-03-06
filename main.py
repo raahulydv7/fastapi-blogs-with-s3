@@ -14,7 +14,7 @@ def root():
     return {"msg": "Welcome to Root"}
 
 
-app.include_router(routes, prefix="/blog", tags=["Blogs"])
+app.include_router(routes)
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional
 
 
+
 class UserCreate(BaseModel):
     username: str
     email: EmailStr
@@ -16,7 +17,6 @@ class UserLogin(BaseModel):
 class BlogCreate(BaseModel):
     title: str
     content: str
-    image_url: Optional[str] = None
 
 
 class BlogResponse(BaseModel):
